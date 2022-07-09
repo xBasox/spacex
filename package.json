@@ -5,12 +5,15 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "B. iLLiev",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.27.2",
+    "concurrently": "^7.2.2",
     "express": "^4.18.1",
     "express-graphql": "^0.12.0",
     "graphql": "^16.5.0"
