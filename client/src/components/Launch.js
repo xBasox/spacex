@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
-import classNames from "classnames";
+// import classNames from "classnames";
 
 const LAUNCH_QUERY = gql`
   query LaunchQuery($flight_number: Int!) {
@@ -40,7 +40,7 @@ export class Launch extends Component {
               launch_year,
               launch_success,
               details,
-              rocket: { rocket_id, rocket_name, rocket_type },
+              rocket: { rocket_name, rocket_type },
             } = data.launch;
 
             return (
