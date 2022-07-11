@@ -41,7 +41,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(LaunchType),
       resolve() {
         return axios
-          .get("https://api.spacexdata.com/v3/launches")
+          .get("https://api.spacexdata.com/v2/launches")
           .then((res) => res.data);
       },
     },
