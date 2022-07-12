@@ -18,6 +18,10 @@ const LAUNCH_QUERY = gql`
         rocket_name
         rocket_type
       }
+      links {
+        article_link
+        video_link
+      }
     }
   }
 `;
@@ -32,7 +36,6 @@ export class Launch extends Component {
           {({ loading, error, data }) => {
             if (loading) return <h4>Loading...</h4>;
             if (error) alert(error);
-            console.log(data);
 
             const {
               mission_name,
@@ -40,9 +43,13 @@ export class Launch extends Component {
               launch_year,
               launch_success,
               details,
+              links: { article_link, video_link },
               rocket: { rocket_name, rocket_type },
             } = data.launch;
 
+            console.log(video_link);
+            let url = video_link.split("/watch?v=");
+            console.log(url);
             return (
               <>
                 <h1 className="display-4 my-3">
@@ -79,9 +86,32 @@ export class Launch extends Component {
                 <h4 className="my-3">Details</h4>
                 <ul className="list-group mb-4">
                   <li className="list-group-item">{details}</li>
+                  <li className="list-group-item">
+                    <h4 className="my-3">Video</h4>
+                    <iframe
+                      height="300rem"
+                      width="70%"
+                      src={`https://www.youtube.com/embed/${url[1]}`}
+                      allow="encrypted-media"
+                      allowFullScreen
+                      title="video"
+                      className="mb-4"
+                    />
+                  </li>
                 </ul>
 
-                <Link to="/" className="list-group-item btn-secondary">
+                <h4 className="my-3">Article</h4>
+                <iframe
+                  height="1000rem"
+                  width="70%"
+                  src={article_link}
+                  allow="encrypted-media"
+                  allowFullScreen
+                  title="video"
+                  className="mb-4"
+                />
+
+                <Link to="/" className="list-group-item btn btn-secondary">
                   Back
                 </Link>
               </>

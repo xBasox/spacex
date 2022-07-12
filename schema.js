@@ -20,6 +20,16 @@ const LaunchType = new GraphQLObjectType({
     launch_success: { type: GraphQLBoolean },
     details: { type: GraphQLString },
     rocket: { type: RocketType },
+    links: { type: LinkType },
+  }),
+});
+
+// Links Type
+const LinkType = new GraphQLObjectType({
+  name: "Link",
+  fields: () => ({
+    video_link: { type: GraphQLString },
+    article_link: { type: GraphQLString },
   }),
 });
 
@@ -42,6 +52,17 @@ const RootQuery = new GraphQLObjectType({
       resolve() {
         return axios
           .get("https://api.spacexdata.com/v2/launches")
+          .then((res) => res.data);
+      },
+    },
+    link: {
+      type: LinkType,
+      args: {
+        flight_number: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        return axios
+          .get(`https://api.spacexdata.com/v3/launches/${args.flight_number}`)
           .then((res) => res.data);
       },
     },
