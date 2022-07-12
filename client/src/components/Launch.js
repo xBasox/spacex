@@ -47,9 +47,9 @@ export default class Launch extends Component {
               rocket: { rocket_name, rocket_type },
             } = data.launch;
 
-            console.log(video_link);
-            let url = video_link.split("/watch?v=");
-            console.log(url);
+            const url = video_link.split("/watch?v=");
+            console.log(article_link);
+
             return (
               <>
                 <h1 className="display-4 my-3">
@@ -101,17 +101,15 @@ export default class Launch extends Component {
                 </ul>
 
                 <h4 className="my-3">Article</h4>
-                <iframe
-                  height="1000rem"
-                  width="70%"
-                  src={article_link}
-                  allow="encrypted-media"
-                  allowFullScreen
-                  title="video"
-                  className="mb-4"
-                />
-
-                <Link to="/" className="list-group-item btn btn-secondary">
+                <a
+                  className="btn btn-primary mb-4"
+                  href={article_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Article
+                </a>
+                <Link to="/" className="btn btn-secondary">
                   Back
                 </Link>
               </>
