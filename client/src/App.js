@@ -16,7 +16,7 @@ export default function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="App">
-          <h1>SpaceX</h1>
+          <h1 className="display-4 mt-5 mb-5"><a className="text-decoration-none" href="/">SpaceX</a></h1>
           <Route exact path="/" component={Launches} />
           <Route exact path="/launch/:flight_number" component={Launch} />
         </div>

@@ -20,19 +20,19 @@ export class Launches extends Component {
   render() {
     return (
       <>
-        <h1 className="display-4 my-3">Launches</h1>
+        <h1 className="display-6 my-3">Launches</h1>
         <MissionKey />
         <Query query={LAUNCHES_QUERY}>
           {({ loading, error, data }) => {
-            if (loading) return <h4>Loading...</h4>;
+            if (loading) return <h4 className="mt-5 mb-5">Loading...</h4>;
             if (error) alert(error);
 
             return (
-              <>
+              <div className="mt-5">
                 {data.launches.map((launch) => (
                   <LaunchItem key={launch.flight_number} launch={launch} />
                 ))}
-              </>
+              </div>
             );
           }}
         </Query>
