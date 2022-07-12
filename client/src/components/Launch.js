@@ -47,8 +47,16 @@ export default class Launch extends Component {
               rocket: { rocket_name, rocket_type },
             } = data.launch;
 
-            const url = video_link.split("/watch?v=");
-            console.log(article_link);
+            let url1;
+            let url2;
+            const test = "https://youtu.be/";
+            if (video_link.includes(test)) {
+              url1 = video_link.split(test);
+              url2 = url1;
+            } else {
+              url2 = video_link.split("/watch?v=");
+            }
+            console.log(url1, url2)
 
             return (
               <>
@@ -91,7 +99,7 @@ export default class Launch extends Component {
                     <iframe
                       height="300rem"
                       width="70%"
-                      src={`https://www.youtube.com/embed/${url[1]}`}
+                      src={`https://www.youtube.com/embed/${url2[1]}`}
                       allow="encrypted-media"
                       allowFullScreen
                       title="video"
